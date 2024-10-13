@@ -8,6 +8,14 @@ const useHomeStore = create((set,get)=>({
     filterdCountries : [],
     searchTerm:'',
     setTerm:(searchTerm)=>set({searchTerm:searchTerm}),
+    theme:localStorage.getItem('theme')||'light',
+    setTheme :(theme)=>{
+        if(theme==='light') {
+            set({theme:'dark'})
+        }
+        else 
+            set({theme:'light'})   
+    },
 
     //function to fetch all countries 
 

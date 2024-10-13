@@ -9,13 +9,13 @@ function SearchBar() {
 
   const handleSearch = (e) => {
     const value = e.target.value;
-    setTerm(value); // Update the search term in state
-    filterCountries(value); // Trigger the filtering logic
+    setTerm(value);
+    filterCountries(value); 
   };
   return (
     <form
       action="#"
-      className="flex flex-col gap-8 md:flex-row justify-between px-16 text-text-light  dark:text-text-dark"
+      className="flex flex-col gap-8 md:flex-row justify-between px-4 md:px-16 text-text-light  dark:text-text-dark"
     >
       {/* input */}
       <div className="flex gap-4 h-12 items-center px-8 md:w-[30rem] shadow-lg rounded-md bg-element-light dark:bg-element-dark">
