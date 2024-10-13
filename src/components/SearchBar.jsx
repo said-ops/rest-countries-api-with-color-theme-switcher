@@ -20,11 +20,12 @@ function SearchBar() {
       </div>
       {/* select  */}
       <select
-        className=" shadow-lg bg-element-light outline-none border-none dark:bg-element-dark px-4"
+        className=" shadow-lg bg-element-light outline-none border-none dark:bg-element-dark p-4"
         name="region"
         id="region"
+        defaultValue=""
       >
-        <option value="" selected>
+        <option value="" disabled>
           Filter by region
         </option>
         <option value="America">America</option>
