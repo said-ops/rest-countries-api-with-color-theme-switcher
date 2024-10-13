@@ -10,6 +10,7 @@ function HomePage() {
   const fetchCountries = useHomeStore((state) => state.fetchCountries);
   const error = useHomeStore((state) => state.error);
   const loading = useHomeStore((state) => state.loading);
+  const searchTerm = useHomeStore((state) => state.searchTerm);
 
   useEffect(() => {
     fetchCountries();
@@ -24,7 +25,7 @@ function HomePage() {
         {countries.length>0 && filterdCountries.length===0&&
           !loading &&
           !error &&
-          countries.map((country, index) => {
+          filterdCountries.map((country, index) => {
             return <Card country={country} key={index} />;
           })}
         {filterdCountries.length>0&&
@@ -35,6 +36,9 @@ function HomePage() {
           })}
         {loading && !error && countries.length === 0 && (
           <div className="mx-auto absolute md:right-1/2 md:top-1/2 top-[20rem] right-[40%] loader "></div>
+        )}
+         {searchTerm && filterdCountries.length === 0 && !loading && !error && (
+          <div>Nothing matched your search term</div>
         )}
         {error&&!loading&&countries.length===0&&(<div>Error Fetching Data</div>)}
       </div>

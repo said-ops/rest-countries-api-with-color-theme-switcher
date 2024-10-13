@@ -7,9 +7,11 @@ function SearchBar() {
   const filterCountries = useHomeStore(state=>state.filterCountries)
   const setTerm = useHomeStore(state=>state.setTerm)
 
-  useEffect(()=>{
-    if(searchTerm)filterCountries(String(searchTerm).toLowerCase())
-  },[searchTerm])
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setTerm(value); // Update the search term in state
+    filterCountries(value); // Trigger the filtering logic
+  };
   return (
     <form
       action="#"
@@ -26,7 +28,7 @@ function SearchBar() {
           id="search"
           placeholder="Search for a country..."
           value={searchTerm}
-          onChange={(e)=>setTerm(e.target.value)}
+          onChange={(e)=>handleSearch(e)}
         />
       </div>
       {/* select  */}

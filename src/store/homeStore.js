@@ -3,7 +3,7 @@ import { create } from "zustand";
 const useHomeStore = create((set,get)=>({
 
     countries : [],
-    laoding : false,
+    loading : false,
     error : null,
     filterdCountries : [],
     searchTerm:'',
@@ -30,8 +30,16 @@ const useHomeStore = create((set,get)=>({
 
     filterCountries : (searchTerm)=>{
         const {countries} = get();
-        let filterdCountries = countries.filter(country=>String(country.name.common).toLowerCase().includes(searchTerm))
-        set({filterdCountries:filterdCountries})
+       
+        if (searchTerm) {
+            const filteredCountries = countries.filter((country) =>
+              country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            set({ filterdCountries :filteredCountries});
+          } else {
+            // If searchTerm is empty, reset filteredCountries to show all countries
+            set({ filterdCountries: countries });
+          }
     }
 }))
 
