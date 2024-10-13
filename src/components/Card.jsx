@@ -2,7 +2,7 @@ import React from "react";
 
 function Card() {
   return (
-    <div className="min-h-[340px] w-[264px] flex flex-col shadow-md bg-element-light dark:bg-element-dark dark:text-text-dark">
+    <div className="min-h-[340px] w-[264px] flex flex-col shadow-md rounded-md overflow-hidden bg-element-light dark:bg-element-dark dark:text-text-dark">
       {/* flag */}
       <div className="h-1/2">
         <img

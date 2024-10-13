@@ -4,10 +4,10 @@ function SearchBar() {
   return (
     <form
       action="#"
-      className="flex justify-between px-16 text-text-light  dark:text-text-dark"
+      className="flex flex-col gap-8 md:flex-row justify-between px-16 text-text-light  dark:text-text-dark"
     >
       {/* input */}
-      <div className="flex gap-4 h-12 items-center px-8 w-[30rem] shadow-lg bg-element-light dark:bg-element-dark">
+      <div className="flex gap-4 h-12 items-center px-8 md:w-[30rem] shadow-lg rounded-md bg-element-light dark:bg-element-dark">
         <label htmlFor="search">
           <img src="/images/search-icon.svg" alt="search countries" />
         </label>
