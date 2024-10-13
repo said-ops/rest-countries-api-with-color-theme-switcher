@@ -1,10 +1,13 @@
 import { create } from "zustand";
 
-const useHomeStore = create(set=>({
+const useHomeStore = create((set,get)=>({
 
     countries : [],
     laoding : false,
     error : null,
+    filterdCountries : [],
+    searchTerm:'',
+    setTerm:(searchTerm)=>set({searchTerm:searchTerm}),
 
     //function to fetch all countries 
 
@@ -21,6 +24,14 @@ const useHomeStore = create(set=>({
         } catch (error) {
             set({error:error.message , laoding:false})
         }
+    },
+
+    //function to filter by searchTerm
+
+    filterCountries : (searchTerm)=>{
+        const {countries} = get();
+        let filterdCountries = countries.filter(country=>String(country.name.common).toLowerCase().includes(searchTerm))
+        set({filterdCountries:filterdCountries})
     }
 }))
 

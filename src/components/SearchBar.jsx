@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useHomeStore from "../store/homeStore";
 
 function SearchBar() {
+
+  const searchTerm = useHomeStore(state=>state.searchTerm)
+  const filterCountries = useHomeStore(state=>state.filterCountries)
+  const setTerm = useHomeStore(state=>state.setTerm)
+
+  useEffect(()=>{
+    if(searchTerm)filterCountries(String(searchTerm).toLowerCase())
+  },[searchTerm])
   return (
     <form
       action="#"
@@ -16,6 +25,8 @@ function SearchBar() {
           type="text"
           id="search"
           placeholder="Search for a country..."
+          value={searchTerm}
+          onChange={(e)=>setTerm(e.target.value)}
         />
       </div>
       {/* select  */}
