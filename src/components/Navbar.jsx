@@ -8,7 +8,7 @@ function Navbar() {
   }, [theme]);
   return (
     <nav className="flex items-center justify-between px-4 py-4 md:px-16 shadow-md dark:bg-element-dark dark:text-text-dark">
-      <h1 className="md:text-2xl text-l font-bold">Where in the world?</h1>
+      <h1 className="md:text-2xl text-l font-extrabold">Where in the world?</h1>
       <div className="flex  gap-4 p-2 items-center">
         <img
           className="cursor-pointer"
