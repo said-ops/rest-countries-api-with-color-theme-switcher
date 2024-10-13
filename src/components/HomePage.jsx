@@ -22,10 +22,10 @@ function HomePage() {
       {/* cards wrapper */}
       <div className="grid px-16 xl:grid-cols-4 pb-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 place-items-center grid-cols-1 gap-8 ">
         {/* cards here */}
-        {countries.length>0 && filterdCountries.length===0&&
+        {countries.length>0 && filterdCountries.length===0&&!searchTerm&&
           !loading &&
           !error &&
-          filterdCountries.map((country, index) => {
+          countries.map((country, index) => {
             return <Card country={country} key={index} />;
           })}
         {filterdCountries.length>0&&
