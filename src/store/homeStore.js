@@ -49,7 +49,20 @@ const useHomeStore = create((set,get)=>({
             set({ filterdCountries: countries });
           }
     },
-
+    filterByregion : (region)=>{
+        const {countries} =get()
+        
+        if(region){
+            const c = countries.filter(country=>country.region===region)
+            set({filterdCountries :c})
+        }
+        else{
+            set({ filterdCountries: countries });
+        }
+                
+           
+        
+    },
     //function to fetch single countrie details
     details : null,
     detailsLoading :false,

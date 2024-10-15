@@ -5,6 +5,7 @@ function SearchBar() {
 
   const searchTerm = useHomeStore(state=>state.searchTerm)
   const filterCountries = useHomeStore(state=>state.filterCountries)
+  const filterByregion = useHomeStore(state=>state.filterByregion)
   const setTerm = useHomeStore(state=>state.setTerm)
 
   const handleSearch = (e) => {
@@ -37,11 +38,12 @@ function SearchBar() {
         name="region"
         id="region"
         defaultValue=""
+        onChange={e=>filterByregion(e.target.value)}
       >
         <option value="" disabled>
           Filter by region
         </option>
-        <option value="America">America</option>
+        <option value="Americas">America</option>
         <option value="Africa">Africa</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
