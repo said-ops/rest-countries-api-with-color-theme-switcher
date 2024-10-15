@@ -15,6 +15,7 @@ function HomePage() {
 
   useEffect(() => {
     fetchCountries();
+    console.log(countries);
   }, []);
   return (
     <>
@@ -30,7 +31,18 @@ function HomePage() {
           !error &&
           countries.map((country, index) => {
             return (
-              <Link key={index} to={`/details/${country.name.common}`}>
+              <Link
+                key={index}
+                to={`/details/${
+                  country.cca2
+                    ? country.cca2
+                    : country.cca3
+                    ? country.cca3
+                    : country.ccn3
+                    ? country.ccn3
+                    : country.cioc
+                }`}
+              >
                 <Card country={country} />
               </Link>
             );
@@ -39,7 +51,22 @@ function HomePage() {
           !loading &&
           !error &&
           filterdCountries.map((country, index) => {
-            return <Card country={country} key={index} />;
+            return (
+              <Link 
+              key={index} 
+              to={`/details/${
+                country.cca2
+                  ? country.cca2
+                  : country.cca3
+                  ? country.cca3
+                  : country.ccn3
+                  ? country.ccn3
+                  : country.cioc
+              }`}
+              >
+                <Card country={country} />
+              </Link>
+            );
           })}
         {loading && !error && countries.length === 0 && (
           <div className="mx-auto absolute md:right-1/2 md:top-1/2 top-[20rem] right-[40%] loader "></div>

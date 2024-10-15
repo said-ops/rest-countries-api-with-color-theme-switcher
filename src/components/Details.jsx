@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
-
 import useHomeStore from "../store/homeStore";
+import { useParams } from "react-router-dom";
 
 function Details() {
   const theme = useHomeStore((state) => state.theme);
+  const fetchDetails = useHomeStore((state) => state.fetchDetails);
+  const details = useHomeStore((state) => state.details);
+  const detailsLoading = useHomeStore((state) => state.detailsLoading);
+  const detailsError = useHomeStore((state) => state.detailsError);
+  const {id} = useParams();
+
+  useEffect(()=>{
+    fetchDetails(id)
+  },[id])
   return (
     <>
       <Navbar />
@@ -35,12 +44,13 @@ function Details() {
       </button>
 
       {/* details goes here */}
-      <div className="md:px-16 p-4 pb-8 flex gap-8 flex-col md:flex-row md:gap-32 text-center md:text-left">
+      {details&&!detailsLoading&&!detailsError&&(
+        <div className="md:px-16 p-4 pb-8 flex gap-8 flex-col md:flex-row md:gap-32 text-center md:text-left">
         {/* flag */}
         <div className="self-center ">
           <img
             className="object-fit md:w-[24.5rem] md:h-[18.5rem]"
-            src="https://flagcdn.com/w320/ga.png"
+            src={`https://flagcdn.com/w640/${details.cca2.toLowerCase()}.png`}
             alt="flag of"
           />
         </div>
@@ -116,6 +126,7 @@ function Details() {
           </div>
         </div>
       </div>
+      )}
     </>
   );
 }

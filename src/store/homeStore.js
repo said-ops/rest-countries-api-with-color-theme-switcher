@@ -48,6 +48,24 @@ const useHomeStore = create((set,get)=>({
             // If searchTerm is empty, reset filteredCountries to show all countries
             set({ filterdCountries: countries });
           }
+    },
+
+    //function to fetch single countrie details
+    details : null,
+    detailsLoading :false,
+    detailsError:null,
+    fetchDetails : async (id)=>{
+        try {
+            set({detailsLoading:true,detailsError:null})
+            const response = await fetch(`https://restcountries.com/v3.1/alpha/${id}`)
+            const data = await response.json()
+            set({detailsLoading:false,details:data[0]})
+            if(!response.ok)
+                throw new Error("failed to fetch details");
+                
+        } catch (error) {
+            set({detailsError:error.message,detailsLoading:false})
+        }
     }
 }))
 
